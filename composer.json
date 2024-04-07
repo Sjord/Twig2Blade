@@ -5,5 +5,15 @@
     "require-dev": {
         "illuminate/view": "^8.83",
         "phpunit/phpunit": "^9.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "Sjord\\": "src/Sjord/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
     }
 }
