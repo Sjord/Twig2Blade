@@ -3,6 +3,8 @@
 namespace Tests;
 
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\DataProvider;
+
 use Sjord\Twig2Blade\Twig2Blade;
 
 use Illuminate\View\View;
@@ -20,6 +22,13 @@ use Illuminate\Events\Dispatcher;
  * that they give the same output.
  */
 final class TemplatesTest extends TestCase {
+    public static function templateProvider() : array {
+        $templates = glob(__DIR__ . '/templates/*.twig');
+        return array_map(function ($t) {
+            return [basename($t)];
+        }, $templates);
+    }
+
     public function setUp() : void {
         parent::setUp();
         $this->filesystem = new Filesystem();
@@ -56,14 +65,15 @@ final class TemplatesTest extends TestCase {
         ];
     }
 
-    public function testTemplates() {
+    /**
+     * @dataProvider templateProvider
+     */
+    #[DataProvider('templateProvider')]
+    public function testTemplates($twig) {
+        $path = __DIR__.'/templates/'.$twig;
         $converter = new Twig2Blade();
-
-        $twigs = glob(__DIR__ . '/templates/*.twig');
-        foreach ($twigs as $twig) {
-            $blade = $converter->convert($twig);
-            $this->assertEquals($this->renderBlade($blade), $this->renderTwig($twig), $twig);
-        }
+        $blade = $converter->convert($path);
+        $this->assertEquals($this->renderBlade($blade), $this->renderTwig($path));
     }
 
     private function renderBlade($blade) {

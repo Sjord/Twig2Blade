@@ -5,8 +5,8 @@ class NameExpression extends \Sjord\Twig2Blade\Node\Expression\AbstractExpressio
 
     public function compile(Compiler $compiler): void
     {
-        $context = $this->getAttribute('context');
         $name = $this->getAttribute('name');
+        $context = $this->getAttribute('context');
         if ($context == 'expression') {
             $compiler->raw('$' . $name);
         } else if ($context == 'array') {
@@ -14,5 +14,10 @@ class NameExpression extends \Sjord\Twig2Blade\Node\Expression\AbstractExpressio
         } else {
             $compiler->raw($name);
         }
+    }
+
+    public function asPhpExpression() {
+        $this->setAttribute('context', 'expression');
+        return $this;
     }
 }

@@ -6,24 +6,21 @@ use Twig\Template;
 class GetAttrExpression extends \Sjord\Twig2Blade\Node\Expression\AbstractExpression {
     public function compile(Compiler $compiler): void
     {
-        $attribute = $this->getNode('attribute');
         if (Template::ARRAY_CALL === $this->getAttribute('type')) {
-            $node = $this->getNode('node');
-            $node->setAttribute('context', 'expression');
-            $attribute->setAttribute('context', 'array');
             $compiler
-                ->subcompile($node)
+                ->subcompile($this->getNode('node')->asPhpExpression())
                 ->raw('[')
-                ->subcompile($attribute)
+                ->subcompile($this->getNode('attribute'))
                 ->raw(']');
         } else {
-            $node = $this->getNode('node');
-            $node->setAttribute('context', 'expression');
-            $attribute->setAttribute('context', 'object');
             $compiler
-                ->subcompile($node)
+                ->subcompile($this->getNode('node')->asPhpExpression())
                 ->raw('->')
-                ->subcompile($attribute);
+                ->subcompile($this->getNode('attribute')->asObjectProperty());
         }
+    }
+
+    public function asPhpExpression() {
+        return $this;
     }
 }
