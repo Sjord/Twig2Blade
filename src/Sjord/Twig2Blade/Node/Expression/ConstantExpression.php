@@ -18,4 +18,10 @@ class ConstantExpression extends \Sjord\Twig2Blade\Node\Expression\AbstractExpre
         $this->raw = true;
         return $this;
     }
+
+    public function asFunctionName() {
+        // CONST(...)
+        $this->raw = true;
+        return $this;
+    }
 }
