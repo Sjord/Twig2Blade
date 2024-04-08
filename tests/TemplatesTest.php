@@ -35,8 +35,18 @@ final class TemplatesTest extends TestCase {
     }
 
     private function getContext() {
+        $object = new \stdClass();
+        $object->prop = "world";
+        $object->nested = new \stdClass();
+        $object->nested->prop = "world";
+
         return [
-            "string" => "world"
+            "string" => "world",
+            "assoc" => [
+                "foo" => "world",
+            ],
+            "numarray" => ["world"],
+            "object" => $object
         ];
     }
 
@@ -63,8 +73,13 @@ final class TemplatesTest extends TestCase {
         $engine = new CompilerEngine($compiler);
         $resolver = new EngineResolver();
         $factory = new Factory($resolver, $finder, $events);
-        $view = new View($factory, $engine, $path, $path, $this->getContext());
-        return $view->render();
+        try {
+            $view = new View($factory, $engine, $path, $path, $this->getContext());
+            return $view->render();
+        } catch (\Illuminate\View\ViewException $e) {
+            var_dump($blade);
+            throw $e;
+        }
     }
 
     private function renderTwig($path) {

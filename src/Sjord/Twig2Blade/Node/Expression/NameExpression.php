@@ -5,7 +5,14 @@ class NameExpression extends \Sjord\Twig2Blade\Node\Expression\AbstractExpressio
 
     public function compile(Compiler $compiler): void
     {
+        $context = $this->getAttribute('context');
         $name = $this->getAttribute('name');
-        $compiler->raw("{{ $$name }}");
+        if ($context == 'expression') {
+            $compiler->raw('$' . $name);
+        } else if ($context == 'array') {
+            $compiler->string($name);
+        } else {
+            $compiler->raw($name);
+        }
     }
 }
