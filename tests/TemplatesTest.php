@@ -40,7 +40,13 @@ final class TemplatesTest extends TestCase {
         $object->nested = new \stdClass();
         $object->nested->prop = "world";
 
+        $home = new \stdClass();
+        $home->href = "/";
+        $home->caption = "home";
+
         return [
+            "a_variable" => "foo",
+            "navigation" => [$home],
             "string" => "world",
             "assoc" => [
                 "foo" => "world",
