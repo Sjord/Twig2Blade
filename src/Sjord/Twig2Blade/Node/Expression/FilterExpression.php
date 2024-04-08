@@ -10,8 +10,4 @@ class FilterExpression extends \Sjord\Twig2Blade\Node\Expression\AbstractExpress
             ->subcompile($this->getNode('node')->asPhpExpression())
             ->raw(')');
     }
-
-    public function asPhpExpression() {
-        return $this;
-    }
 }

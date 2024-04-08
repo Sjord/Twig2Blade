@@ -73,7 +73,7 @@ final class TemplatesTest extends TestCase {
         $path = __DIR__.'/templates/'.$twig;
         $converter = new Twig2Blade();
         $blade = $converter->convert($path);
-        $this->assertEquals($this->renderBlade($blade), $this->renderTwig($path));
+        $this->assertEquals($this->renderTwig($path), $this->renderBlade($blade));
     }
 
     private function renderBlade($blade) {

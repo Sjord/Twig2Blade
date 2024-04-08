@@ -6,4 +6,8 @@ class AbstractExpression extends \Sjord\Twig2Blade\Node\Node {
     // {
     //     $compiler->raw(get_class($this));
     // }
+
+    public function asPhpExpression() {
+        return $this;
+    }
 }

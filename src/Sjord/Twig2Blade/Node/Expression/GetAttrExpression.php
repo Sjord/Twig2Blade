@@ -19,8 +19,4 @@ class GetAttrExpression extends \Sjord\Twig2Blade\Node\Expression\AbstractExpres
                 ->subcompile($this->getNode('attribute')->asObjectProperty());
         }
     }
-
-    public function asPhpExpression() {
-        return $this;
-    }
 }
