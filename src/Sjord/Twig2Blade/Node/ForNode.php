@@ -6,7 +6,7 @@ class ForNode extends \Sjord\Twig2Blade\Node\Node {
     {
         $compiler
             ->raw('@foreach (')
-            ->subcompile($this->getNode('seq')->asPhpExpression())
+            ->subcompile($this->getNode('seq'))
             ->raw(' as ')
             ->subcompile($this->getNode('value_target'))
             ->raw(")\n")

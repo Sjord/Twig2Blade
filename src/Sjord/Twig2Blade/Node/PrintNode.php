@@ -5,7 +5,7 @@ class PrintNode extends \Sjord\Twig2Blade\Node\Node {
     public function compile(Compiler $compiler): void
     {
         $compiler->raw('{{ ')
-            ->subcompile($this->getNode('expr')->asPhpExpression())
+            ->subcompile($this->getNode('expr'))
             ->raw(' }}');
     }
 }

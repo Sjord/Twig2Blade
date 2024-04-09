@@ -8,13 +8,13 @@ class GetAttrExpression extends \Sjord\Twig2Blade\Node\Expression\AbstractExpres
     {
         if (Template::ARRAY_CALL === $this->getAttribute('type')) {
             $compiler
-                ->subcompile($this->getNode('node')->asPhpExpression())
+                ->subcompile($this->getNode('node'))
                 ->raw('[')
                 ->subcompile($this->getNode('attribute'))
                 ->raw(']');
         } else {
             $compiler
-                ->subcompile($this->getNode('node')->asPhpExpression())
+                ->subcompile($this->getNode('node'))
                 ->raw('->')
                 ->subcompile($this->getNode('attribute')->asObjectProperty());
         }

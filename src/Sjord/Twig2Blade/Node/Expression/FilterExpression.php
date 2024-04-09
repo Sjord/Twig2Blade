@@ -7,7 +7,7 @@ class FilterExpression extends \Sjord\Twig2Blade\Node\Expression\AbstractExpress
         $compiler
             ->subcompile($this->getNode('filter')->asFunctionName())
             ->raw('(')
-            ->subcompile($this->getNode('node')->asPhpExpression())
+            ->subcompile($this->getNode('node'))
             ->raw(')');
     }
 }
