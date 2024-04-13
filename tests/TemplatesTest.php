@@ -83,11 +83,12 @@ final class TemplatesTest extends TestCase {
         $template_paths = [];
         $extensions = ['blade.php'];
         $files = new Filesystem();
-        $finder = new FileViewFinder($files, $template_paths, $extensions);
+        $finder = new ConvertingViewFinder($this->tmpdir, __DIR__.'/templates/');
         $events = new Dispatcher();
         $compiler = new BladeCompiler($files, $cache_dir);
         $engine = new CompilerEngine($compiler);
         $resolver = new EngineResolver();
+        $resolver->register('blade', function () use ($engine) { return $engine; });
         $factory = new Factory($resolver, $finder, $events);
         try {
             $view = new View($factory, $engine, $path, $path, $this->getContext());
