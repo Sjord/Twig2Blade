@@ -11,9 +11,15 @@ class ArrayExpression extends \Sjord\Twig2Blade\Node\Expression\AbstractExpressi
             if (!$first) {
                 $compiler->raw(', ');
             }
-            $compiler->subcompile($key)
-                ->raw(' => ')
-                ->subcompile($value);
+            if ($value->hasAttribute('spread')) {
+                $compiler
+                    ->raw('...')
+                    ->subcompile($value);
+            } else {
+                $compiler->subcompile($key)
+                    ->raw(' => ')
+                    ->subcompile($value);
+            }
             $first = false;
         }
         $compiler->raw(']');

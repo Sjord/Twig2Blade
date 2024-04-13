@@ -22,6 +22,9 @@ use Illuminate\Events\Dispatcher;
  * that they give the same output.
  */
 final class TemplatesTest extends TestCase {
+    private string $tmpdir;
+    private Filesystem $filesystem;
+
     public static function templateProvider() : array {
         $templates = glob(__DIR__ . '/templates/*.twig');
         return array_map(function ($t) {
@@ -61,7 +64,11 @@ final class TemplatesTest extends TestCase {
                 "foo" => "world",
             ],
             "numarray" => ["world"],
-            "object" => $object
+            "sizes" => [34, 36, 38, 40, 42],
+            "object" => $object,
+            "phone" => "5551234",
+            "number" => 101,
+            "somebool" => true
         ];
     }
 

@@ -5,9 +5,9 @@ class IfNode extends \Sjord\Twig2Blade\Node\Node {
     public function compile(Compiler $compiler): void
     {
         foreach (array_chunk($this->getNode('tests')->nodes, 2) as [$test, $block]) {
-            $compiler->raw('@if ')
+            $compiler->raw('@if (')
                 ->subcompile($test)
-                ->raw("\n")
+                ->raw(")\n")
                 ->subcompile($block);
         }
 

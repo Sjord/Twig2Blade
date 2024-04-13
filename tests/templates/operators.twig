@@ -1,0 +1,70 @@
+{{ string ~ a_variable }}
+{{ string ~ a_variable|upper }}
+{{ (string ~ a_variable)|upper }}
+
+{{ 1 + 1 }}
+{{ 3 - 2 }}
+{{ 1 / 2 }}
+{{ 11 % 7 }}
+{{ 20 // 7 }}
+{{ -20 // 7 }}
+{{ 2 * 2 }}
+{{ 2 ** 3 }}
+{% if true and false or not false %}
+    true
+{% endif %}
+{{ 99 b-and 33 b-or 11 b-xor 22 }}
+{% if 'Fabien' starts with 'F' %}
+    starts with
+{% endif %}
+
+{% if 'Fabien' ends with 'n' %}
+    ends with
+{% endif %}
+
+{% if phone matches '/^[\\d\\.]+$/' %}
+    regex
+{% endif %}
+
+{% if sizes has every v => v > 38 %}
+    all sizes bigger than 38
+{% endif %}
+
+{% if sizes has some v => v > 38 %}
+    some sizes bigger than 38
+{% endif %}
+
+{% if 1 in [1, 2, 3] %}
+    numeric containment
+{% endif %}
+
+{% if 'cd' in 'abcde' %}
+    string containment
+{% endif %}
+
+{% if 1 not in [1, 2, 3] %}
+    negative numeric containment
+{% endif %}
+
+{% if 'cd' not in 'abcde' %}
+    negative string containment
+{% endif %}
+
+{% if number is odd %}
+    odd test
+{% endif %}
+
+{% for i in 1..5 %}
+{{ i }}
+{% endfor %}
+
+{{ somebool ? 'yes' : 'no' }}
+
+{{ not_defined ?? 'no' }}
+
+{% for i in [1, 2, ...sizes] %}
+    {{ i }}
+{% endfor %}
+
+{{ "foo #{string} baz" }}
+{{ "foo #{1 + 2} baz" }}
