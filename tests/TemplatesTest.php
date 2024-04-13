@@ -64,7 +64,11 @@ final class TemplatesTest extends TestCase {
                 "foo" => "world",
             ],
             "numarray" => ["world"],
-            "object" => $object
+            "sizes" => [34, 36, 38, 40, 42],
+            "object" => $object,
+            "phone" => "5551234",
+            "number" => 101,
+            "somebool" => true
         ];
     }
 

@@ -2,10 +2,16 @@
 namespace Sjord\Twig2Blade\Node\Expression;
 use \Twig\Compiler;
 class FilterExpression extends \Sjord\Twig2Blade\Node\Expression\AbstractExpression {
+    private static $filterMap = [
+        'upper' => 'strtoupper'
+    ];
+
     public function compile(Compiler $compiler): void
     {
+        $filterName = $this->getNode('filter')->getAttribute('value');
+        $functionName = static::$filterMap[$filterName] ?? $filterName;
         $compiler
-            ->subcompile($this->getNode('filter')->asFunctionName())
+            ->raw($functionName)
             ->raw('(')
             ->subcompile($this->getNode('node'))
             ->raw(')');
