@@ -22,6 +22,9 @@ use Illuminate\Events\Dispatcher;
  * that they give the same output.
  */
 final class TemplatesTest extends TestCase {
+    private string $tmpdir;
+    private Filesystem $filesystem;
+
     public static function templateProvider() : array {
         $templates = glob(__DIR__ . '/templates/*.twig');
         return array_map(function ($t) {
