@@ -2,9 +2,18 @@
 namespace Sjord\Twig2Blade;
 
 class Twig2Blade {
-    public function convert($path) {
+    public function convertFile($path) {
         $loader = new \Twig\Loader\FilesystemLoader(dirname($path));
-        $source = $loader->getSourceContext(basename($path));
+        return $this->convertTwigLoader($loader, basename($path));
+    }
+
+    public function convertString($twig) {
+        $loader = new \Twig\Loader\ArrayLoader(["string" => $twig]);
+        return $this->convertTwigLoader($loader, "string");
+    }
+
+    protected function convertTwigLoader(\Twig\Loader\LoaderInterface $loader, string $name) {
+        $source = $loader->getSourceContext($name);
         $twig = new \Twig\Environment($loader, ["autoescape" => false]);
         $twig->setCompiler(new Compiler($twig));
         $node = $twig->parse($twig->tokenize($source));

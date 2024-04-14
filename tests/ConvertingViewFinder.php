@@ -17,7 +17,7 @@ final class ConvertingViewFinder implements ViewFinderInterface
 
     public function find($view){
         $converter = new Twig2Blade();
-        $blade = $converter->convert($this->templatePath . $view);
+        $blade = $converter->convertFile($this->templatePath . $view);
         $path = tempnam($this->cachePath, 'ConvertingViewFinder') . '.blade.php';
         file_put_contents($path, $blade);
         return $path;
