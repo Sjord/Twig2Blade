@@ -20,7 +20,7 @@ Converts this Twig template:
 
 <h1>My Webpage</h1>
 {{ a_variable }}
-```twig
+```
 
 To this Blade template:
 
