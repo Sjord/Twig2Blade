@@ -1,1 +1,13 @@
+{{ -5|abs }}
+{{ 'my first car'|capitalize }}
 {{ assoc|json_encode }}
+{{ sizes|length }}
+{{ string|lower }}
+{{ "Hello foo"|replace(assoc) }}
+{% for size in sizes|reverse %}
+    {{ size }}
+{% endfor %}
+{{ some_html|striptags('<br><p>') }}
+{{ 'my first car'|title }}
+{{ string|upper }}
+{{ "string with spaces"|url_encode }}

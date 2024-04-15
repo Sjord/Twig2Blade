@@ -68,7 +68,9 @@ final class TemplatesTest extends TestCase {
             "object" => $object,
             "phone" => "5551234",
             "number" => 101,
-            "somebool" => true
+            "somebool" => true,
+            "date" => "2023-04-24",
+            "some_html" => '<h1>hello</h1><br>world',
         ];
     }
 
