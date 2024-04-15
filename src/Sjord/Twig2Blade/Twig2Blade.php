@@ -1,5 +1,6 @@
 <?php
 namespace Sjord\Twig2Blade;
+use Twig\TwigFunction;
 
 class Twig2Blade {
     public function convertFile($path) {
@@ -16,9 +17,14 @@ class Twig2Blade {
         $source = $loader->getSourceContext($name);
         $twig = new \Twig\Environment($loader, ["autoescape" => false]);
         $twig->setCompiler(new Compiler($twig));
+        $twig->registerUndefinedFunctionCallback([$this, 'undefinedFunctionCallback']);
         $node = $twig->parse($twig->tokenize($source));
         $traverser = new \Twig\NodeTraverser($twig, [new ConvertNodeVisitor($node)]);
         $node = new Node\ModuleNode($traverser->traverse($node));
         return $twig->compile($node);
+    }
+
+    public function undefinedFunctionCallback($name) {
+        return new TwigFunction($name, $name);
     }
 }
