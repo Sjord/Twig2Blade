@@ -22,6 +22,19 @@ class FilterExpression extends \Sjord\Twig2Blade\Node\Expression\AbstractExpress
             return;
         }
 
+        if ($filterName == 'default') {
+            $args = [$this->getNode('node'), ...$this->getNode('arguments')->nodes];
+            $first = true;
+            foreach ($args as $arg) {
+                if (!$first) {
+                    $compiler->raw(' ?? ');
+                }
+                $compiler->subcompile($arg);
+                $first = false;
+            }
+            return;
+        }
+
         $functionName = static::$filterMap[$filterName] ?? $filterName;
         $compiler
             ->raw($functionName)
