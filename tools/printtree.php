@@ -31,7 +31,10 @@ final class PrintTreeVisitor implements NodeVisitorInterface
 $path = $argv[1];
 $loader = new \Twig\Loader\FilesystemLoader(dirname($path));
 $source = $loader->getSourceContext(basename($path));
-$twig = new \Twig\Environment($loader, ["autoescape" => false]);
+$twig = new \Twig\Environment($loader, [
+    "autoescape" => false,
+    "optimizations" => 0
+]);
 $node = $twig->parse($twig->tokenize($source));
 $traverser = new \Twig\NodeTraverser($twig, [new PrintTreeVisitor()]);
 $traverser->traverse($node);

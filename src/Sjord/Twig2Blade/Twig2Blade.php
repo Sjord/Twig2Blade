@@ -14,7 +14,10 @@ class Twig2Blade {
 
     protected function convertTwigLoader(\Twig\Loader\LoaderInterface $loader, string $name) {
         $source = $loader->getSourceContext($name);
-        $twig = new \Twig\Environment($loader, ["autoescape" => false]);
+        $twig = new \Twig\Environment($loader, [
+            "autoescape" => false,
+            "optimizations" => 0
+        ]);
         $twig->setCompiler(new Compiler($twig));
         $node = $twig->parse($twig->tokenize($source));
         $traverser = new \Twig\NodeTraverser($twig, [new ConvertNodeVisitor($node)]);

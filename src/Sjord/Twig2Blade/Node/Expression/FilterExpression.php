@@ -17,6 +17,11 @@ class FilterExpression extends \Sjord\Twig2Blade\Node\Expression\AbstractExpress
     public function compile(Compiler $compiler): void
     {
         $filterName = $this->getNode('filter')->getAttribute('value');
+        if ($filterName == 'raw') {
+            $compiler->subcompile($this->getNode('node'));
+            return;
+        }
+
         $functionName = static::$filterMap[$filterName] ?? $filterName;
         $compiler
             ->raw($functionName)
@@ -32,5 +37,9 @@ class FilterExpression extends \Sjord\Twig2Blade\Node\Expression\AbstractExpress
             $first = false;
         }
         $compiler->raw(')');
+    }
+
+    public function isRaw() {
+        return $this->getNode('filter')->getAttribute('value') == 'raw';
     }
 }
