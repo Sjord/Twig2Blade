@@ -4,6 +4,7 @@ use \Twig\Compiler;
 class FilterExpression extends \Sjord\Twig2Blade\Node\Expression\AbstractExpression {
     private static $filterMap = [
         'capitalize' => 'ucfirst',
+        'keys' => 'array_keys',
         'length' => 'count',
         'lower' => 'strtolower',
         'replace' => 'strtr',

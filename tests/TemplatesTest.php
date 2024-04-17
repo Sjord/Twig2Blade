@@ -51,6 +51,7 @@ final class TemplatesTest extends TestCase {
         $object->prop = "world";
         $object->nested = new \stdClass();
         $object->nested->prop = "world";
+        $object->username = 'Sjord';
 
         $home = new \stdClass();
         $home->href = "/";
@@ -71,6 +72,8 @@ final class TemplatesTest extends TestCase {
             "somebool" => true,
             "date" => "2023-04-24",
             "some_html" => '<h1>hello</h1><br>world',
+            "users" => ["Sjord" => $object],
+            "empty" => [],
         ];
     }
 
