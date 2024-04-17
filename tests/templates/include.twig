@@ -1,0 +1,7 @@
+include
+
+{% include 'variable.twig' %}
+
+{% include 'variable.twig' with {'string': 'includearg'} %}
+
+{% include ['variable.twig', 'variable.twig'] %}
