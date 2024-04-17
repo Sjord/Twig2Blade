@@ -22,7 +22,10 @@ class Twig2Blade {
         $twig->setCompiler(new Compiler($twig));
         $twig->registerUndefinedFunctionCallback([$this, 'undefinedFunctionCallback']);
         $node = $twig->parse($twig->tokenize($source));
-        $traverser = new \Twig\NodeTraverser($twig, [new ConvertNodeVisitor($node)]);
+        $traverser = new \Twig\NodeTraverser($twig, [
+            new ConvertNodeVisitor($node),
+            new InsideLoopVisitor(),
+        ]);
         $node = new Node\ModuleNode($traverser->traverse($node));
         return $twig->compile($node);
     }

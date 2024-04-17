@@ -1,0 +1,45 @@
+{% for i in 0..10 %}
+* {{ i }}
+{% endfor %}
+
+{% for letter in 'a'..'z' %}
+* {{ letter }}
+{% endfor %}
+
+{% for letter in 'a'|upper..'z'|upper %}
+* {{ letter }}
+{% endfor %}
+
+{% for user in users %}
+{{ loop.index }} - {{ user.username }}
+{% endfor %}
+
+<ul>
+    {% for user in empty %}
+        <li>{{ user.username }}</li>
+    {% else %}
+        <li><em>no user found</em></li>
+    {% endfor %}
+</ul>
+
+<h1>Members</h1>
+<ul>
+    {% for key in users|keys %}
+        <li>{{ key }}</li>
+    {% endfor %}
+</ul>
+
+<h1>Members</h1>
+<ul>
+    {% for key, user in users %}
+        <li>{{ key }}: {{ user.username|e }}</li>
+    {% endfor %}
+</ul>
+
+{% for i in 0..10 %}
+{{ loop.index }}
+{{ loop.index0 }}
+{{ loop.revindex0 }}
+{{ loop.length }}
+{# TODO revindex0 #}
+{% endfor %}
