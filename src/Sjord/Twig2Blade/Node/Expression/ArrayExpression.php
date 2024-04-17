@@ -1,8 +1,12 @@
 <?php
+
 namespace Sjord\Twig2Blade\Node\Expression;
+
 use Twig\Compiler;
 use Twig\Template;
-class ArrayExpression extends \Sjord\Twig2Blade\Node\Expression\AbstractExpression {
+
+class ArrayExpression extends \Sjord\Twig2Blade\Node\Expression\AbstractExpression
+{
     public function compile(Compiler $compiler): void
     {
         $first = true;

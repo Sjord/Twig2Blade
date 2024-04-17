@@ -1,19 +1,25 @@
 <?php
+
 namespace Sjord\Twig2Blade;
+
 use Twig\TwigFunction;
 
-class Twig2Blade {
-    public function convertFile($path) {
+class Twig2Blade
+{
+    public function convertFile($path)
+    {
         $loader = new \Twig\Loader\FilesystemLoader(dirname($path));
         return $this->convertTwigLoader($loader, basename($path));
     }
 
-    public function convertString($twig) {
+    public function convertString($twig)
+    {
         $loader = new \Twig\Loader\ArrayLoader(["string" => $twig]);
         return $this->convertTwigLoader($loader, "string");
     }
 
-    protected function convertTwigLoader(\Twig\Loader\LoaderInterface $loader, string $name) {
+    protected function convertTwigLoader(\Twig\Loader\LoaderInterface $loader, string $name)
+    {
         $source = $loader->getSourceContext($name);
         $twig = new \Twig\Environment($loader, [
             "autoescape" => false,
@@ -30,7 +36,8 @@ class Twig2Blade {
         return $twig->compile($node);
     }
 
-    public function undefinedFunctionCallback($name) {
+    public function undefinedFunctionCallback($name)
+    {
         return new TwigFunction($name, $name);
     }
 }

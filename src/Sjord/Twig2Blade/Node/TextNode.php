@@ -1,7 +1,11 @@
 <?php
+
 namespace Sjord\Twig2Blade\Node;
-use \Twig\Compiler;
-class TextNode extends \Sjord\Twig2Blade\Node\Node {
+
+use Twig\Compiler;
+
+class TextNode extends \Sjord\Twig2Blade\Node\Node
+{
     private $bladeDirectives = [
         'append',
         'arguments',
@@ -144,7 +148,8 @@ class TextNode extends \Sjord\Twig2Blade\Node\Node {
         }
     }
 
-    private function needsVerbatim($text) {
+    private function needsVerbatim($text)
+    {
         $directives = implode('|', array_map(function ($d) {
             return "@$d\W";
         }, $this->bladeDirectives));

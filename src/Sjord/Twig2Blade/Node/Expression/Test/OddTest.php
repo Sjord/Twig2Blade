@@ -1,4 +1,5 @@
 <?php
+
 namespace Sjord\Twig2Blade\Node\Expression\Test;
 
 use Twig\Compiler;

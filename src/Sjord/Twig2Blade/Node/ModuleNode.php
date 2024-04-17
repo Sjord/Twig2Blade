@@ -1,9 +1,11 @@
 <?php
+
 namespace Sjord\Twig2Blade\Node;
 
 use Twig\Compiler;
 
-class ModuleNode extends \Sjord\Twig2Blade\Node\Node {
+class ModuleNode extends \Sjord\Twig2Blade\Node\Node
+{
     public function compile(Compiler $compiler): void
     {
         if ($this->hasNode('parent')) {

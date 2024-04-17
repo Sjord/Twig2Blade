@@ -1,8 +1,12 @@
 <?php
+
 namespace Sjord\Twig2Blade\Node;
+
 use Twig\Compiler;
 use Sjord\Twig2Blade\Node\Expression\ArrayExpression;
-class IncludeNode extends \Sjord\Twig2Blade\Node\Node {
+
+class IncludeNode extends \Sjord\Twig2Blade\Node\Node
+{
     public function compile(Compiler $compiler): void
     {
         if ($this->getNode('expr') instanceof ArrayExpression) {

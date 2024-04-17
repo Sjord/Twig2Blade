@@ -1,7 +1,11 @@
 <?php
+
 namespace Sjord\Twig2Blade\Node;
-use \Twig\Compiler;
-class ForNode extends \Sjord\Twig2Blade\Node\Node {
+
+use Twig\Compiler;
+
+class ForNode extends \Sjord\Twig2Blade\Node\Node
+{
     public function compile(Compiler $compiler): void
     {
         if ($this->hasNode('else')) {

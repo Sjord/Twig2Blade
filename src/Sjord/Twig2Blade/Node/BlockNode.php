@@ -1,10 +1,15 @@
 <?php
+
 namespace Sjord\Twig2Blade\Node;
+
 use Twig\Compiler;
-class BlockNode extends \Sjord\Twig2Blade\Node\Node {
+
+class BlockNode extends \Sjord\Twig2Blade\Node\Node
+{
     private $hasParent;
 
-    public function __construct($originalNode, $hasParent) {
+    public function __construct($originalNode, $hasParent)
+    {
         parent::__construct($originalNode);
         $this->hasParent = $hasParent;
     }
@@ -41,11 +46,13 @@ class BlockNode extends \Sjord\Twig2Blade\Node\Node {
         }
     }
 
-    private function bodyIsEmpty($body) {
+    private function bodyIsEmpty($body)
+    {
         return empty($body->nodes) && empty($body->attributes);
     }
 
-    private function bodyHasNewlines($body) {
+    private function bodyHasNewlines($body)
+    {
         return !empty($body->nodes) || str_contains($body->getAttribute('data'), "\n");
     }
 }

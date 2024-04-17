@@ -5,17 +5,19 @@ namespace Tests;
 use Illuminate\View\ViewFinderInterface;
 use Sjord\Twig2Blade\Twig2Blade;
 
-final class ConvertingViewFinder implements ViewFinderInterface 
+final class ConvertingViewFinder implements ViewFinderInterface
 {
     private string $cachePath;
     private string $templatePath;
 
-    public function __construct($cachePath, $templatePath) {
+    public function __construct($cachePath, $templatePath)
+    {
         $this->cachePath = $cachePath;
         $this->templatePath = $templatePath;
     }
 
-    public function find($view){
+    public function find($view)
+    {
         $converter = new Twig2Blade();
         $blade = $converter->convertFile($this->templatePath . $view);
         $path = tempnam($this->cachePath, 'ConvertingViewFinder') . '.blade.php';
@@ -23,10 +25,22 @@ final class ConvertingViewFinder implements ViewFinderInterface
         return $path;
     }
 
-    public function addLocation($location){ }
-    public function addNamespace($namespace, $hints){ }
-    public function prependNamespace($namespace, $hints){ }
-    public function replaceNamespace($namespace, $hints){ }
-    public function addExtension($extension){ }
-    public function flush(){ }
+    public function addLocation($location)
+    {
+    }
+    public function addNamespace($namespace, $hints)
+    {
+    }
+    public function prependNamespace($namespace, $hints)
+    {
+    }
+    public function replaceNamespace($namespace, $hints)
+    {
+    }
+    public function addExtension($extension)
+    {
+    }
+    public function flush()
+    {
+    }
 }
