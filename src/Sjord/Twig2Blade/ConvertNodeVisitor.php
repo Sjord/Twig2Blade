@@ -12,23 +12,28 @@ final class ConvertNodeVisitor implements NodeVisitorInterface
 {
     private ModuleNode $moduleNode;
 
-    public function __construct(ModuleNode $moduleNode) {
+    public function __construct(ModuleNode $moduleNode)
+    {
         $this->moduleNode = $moduleNode;
     }
 
-    public function enterNode(Node $node, Environment $env): Node {
+    public function enterNode(Node $node, Environment $env): Node
+    {
         return $node;
     }
 
-    public function leaveNode(Node $node, Environment $env): Node {
+    public function leaveNode(Node $node, Environment $env): Node
+    {
         return $this->convertNode($node);
     }
 
-    public function getPriority() {
+    public function getPriority()
+    {
         return 0;
     }
 
-    private function convertNode($node) {
+    private function convertNode($node)
+    {
         if ($node instanceof \Twig\Node\BlockReferenceNode) {
             $name = $node->getAttribute('name');
             $block = $this->moduleNode->getNode('blocks')->getNode($name);

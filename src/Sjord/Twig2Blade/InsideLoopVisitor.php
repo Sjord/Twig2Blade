@@ -11,14 +11,16 @@ final class InsideLoopVisitor implements NodeVisitorInterface
 {
     private int $insideLoops = 0;
 
-    public function enterNode(Node $node, Environment $env): Node {
+    public function enterNode(Node $node, Environment $env): Node
+    {
         if ($node instanceof ForNode) {
             $this->insideLoops += 1;
         }
         return $node;
     }
 
-    public function leaveNode(Node $node, Environment $env): Node {
+    public function leaveNode(Node $node, Environment $env): Node
+    {
         $node->setAttribute('insideLoop', (bool)$this->insideLoops);
         if ($node instanceof ForNode) {
             $this->insideLoops -= 1;
@@ -26,7 +28,8 @@ final class InsideLoopVisitor implements NodeVisitorInterface
         return $node;
     }
 
-    public function getPriority() {
+    public function getPriority()
+    {
         return 10;
     }
 }

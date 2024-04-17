@@ -1,7 +1,11 @@
 <?php
+
 namespace Sjord\Twig2Blade\Node\Expression;
+
 use Twig\Compiler;
-class NullCoalesceExpression extends \Sjord\Twig2Blade\Node\Expression\AbstractExpression {
+
+class NullCoalesceExpression extends \Sjord\Twig2Blade\Node\Expression\AbstractExpression
+{
     public function compile(Compiler $compiler): void
     {
         $compiler

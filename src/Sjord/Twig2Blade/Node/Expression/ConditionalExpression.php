@@ -1,7 +1,11 @@
 <?php
+
 namespace Sjord\Twig2Blade\Node\Expression;
+
 use Twig\Compiler;
-class ConditionalExpression extends \Sjord\Twig2Blade\Node\Expression\AbstractExpression {
+
+class ConditionalExpression extends \Sjord\Twig2Blade\Node\Expression\AbstractExpression
+{
     public function compile(Compiler $compiler): void
     {
         // Ternary with no then uses Elvis operator

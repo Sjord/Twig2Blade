@@ -1,7 +1,11 @@
 <?php
+
 namespace Sjord\Twig2Blade\Node\Expression;
+
 use Twig\Compiler;
-class ArrowFunctionExpression extends \Sjord\Twig2Blade\Node\Expression\AbstractExpression {
+
+class ArrowFunctionExpression extends \Sjord\Twig2Blade\Node\Expression\AbstractExpression
+{
     public function compile(Compiler $compiler): void
     {
         $compiler
@@ -10,5 +14,5 @@ class ArrowFunctionExpression extends \Sjord\Twig2Blade\Node\Expression\Abstract
             ->raw(") { return ")
             ->subcompile($this->getNode('expr'))
             ->raw('; }');
-        }
+    }
 }

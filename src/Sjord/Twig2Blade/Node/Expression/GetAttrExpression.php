@@ -1,9 +1,12 @@
 <?php
+
 namespace Sjord\Twig2Blade\Node\Expression;
+
 use Twig\Compiler;
 use Twig\Template;
 
-class GetAttrExpression extends \Sjord\Twig2Blade\Node\Expression\AbstractExpression {
+class GetAttrExpression extends \Sjord\Twig2Blade\Node\Expression\AbstractExpression
+{
     public function compile(Compiler $compiler): void
     {
         if ($this->isLoopAttr()) {
@@ -24,7 +27,8 @@ class GetAttrExpression extends \Sjord\Twig2Blade\Node\Expression\AbstractExpres
         }
     }
 
-    private function isLoopAttr() {
+    private function isLoopAttr()
+    {
         $node = $this->getNode('node');
         $attr = $this->getNode('attribute');
         return $this->getAttribute('insideLoop')
@@ -33,7 +37,8 @@ class GetAttrExpression extends \Sjord\Twig2Blade\Node\Expression\AbstractExpres
             && 'loop' === $node->getAttribute('name');
     }
 
-    private function translateLoopAttr() {
+    private function translateLoopAttr()
+    {
         $map = [
             'index' => 'iteration',
             'index0' => 'index',

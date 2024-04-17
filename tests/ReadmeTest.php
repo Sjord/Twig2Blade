@@ -5,8 +5,10 @@ namespace Tests;
 use PHPUnit\Framework\TestCase;
 use Sjord\Twig2Blade\Twig2Blade;
 
-final class ReadmeTest extends TestCase {
-    public function testReadme() {
+final class ReadmeTest extends TestCase
+{
+    public function testReadme()
+    {
         $sections = $this->getCodeSections();
         $matching = $this->matchCodeSections($sections);
         $converter = new Twig2Blade();
@@ -15,7 +17,8 @@ final class ReadmeTest extends TestCase {
         }
     }
 
-    private function matchCodeSections($sections) {
+    private function matchCodeSections($sections)
+    {
         $matches = [];
         $previous = null;
         foreach ($sections as [$lang, $code]) {
@@ -31,7 +34,8 @@ final class ReadmeTest extends TestCase {
         return $matches;
     }
 
-    private function getCodeSections() {
+    private function getCodeSections()
+    {
         $lines = file(__DIR__ . '/../README.md');
         $inCode = false;
         $code = '';
@@ -45,7 +49,7 @@ final class ReadmeTest extends TestCase {
                 }
                 $inCode = !$inCode;
                 $lang = substr(trim($line), 3);
-            } else if ($inCode) {
+            } elseif ($inCode) {
                 $code .= $line;
             }
         }

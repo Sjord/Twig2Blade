@@ -21,18 +21,21 @@ use Illuminate\Events\Dispatcher;
  * Render both the Twig and the converted Blade template and verify
  * that they give the same output.
  */
-final class TemplatesTest extends TestCase {
+final class TemplatesTest extends TestCase
+{
     private string $tmpdir;
     private Filesystem $filesystem;
 
-    public static function templateProvider() : array {
+    public static function templateProvider(): array
+    {
         $templates = glob(__DIR__ . '/templates/*.twig');
         return array_map(function ($t) {
             return [basename($t)];
         }, $templates);
     }
 
-    public function setUp() : void {
+    public function setUp(): void
+    {
         parent::setUp();
         $this->filesystem = new Filesystem();
         $this->tmpdir = tempnam(sys_get_temp_dir(), 'twig2blade');
@@ -41,12 +44,14 @@ final class TemplatesTest extends TestCase {
 
     }
 
-    public function tearDown() : void {
+    public function tearDown(): void
+    {
         $this->filesystem->deleteDirectory($this->tmpdir);
         parent::tearDown();
     }
 
-    private function getContext() {
+    private function getContext()
+    {
         $object = new \stdClass();
         $object->prop = "world";
         $object->nested = new \stdClass();
@@ -81,14 +86,16 @@ final class TemplatesTest extends TestCase {
      * @dataProvider templateProvider
      */
     #[DataProvider('templateProvider')]
-    public function testTemplates($twig) {
+    public function testTemplates($twig)
+    {
         $path = __DIR__.'/templates/'.$twig;
         $converter = new Twig2Blade();
         $blade = $converter->convertFile($path);
         $this->assertEquals($this->renderTwig($path), $this->renderBlade($blade));
     }
 
-    private function renderBlade($blade) {
+    private function renderBlade($blade)
+    {
         $path = tempnam($this->tmpdir, 'blade');
         file_put_contents($path, $blade);
         $cache_dir = $this->tmpdir;
@@ -111,7 +118,8 @@ final class TemplatesTest extends TestCase {
         }
     }
 
-    private function renderTwig($path) {
+    private function renderTwig($path)
+    {
         $loader = new \Twig\Loader\FilesystemLoader(dirname($path));
         $twig = new \Twig\Environment($loader);
         return $twig->load(basename($path))->render($this->getContext());

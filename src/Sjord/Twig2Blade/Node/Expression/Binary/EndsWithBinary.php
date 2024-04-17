@@ -1,7 +1,11 @@
 <?php
+
 namespace Sjord\Twig2Blade\Node\Expression\Binary;
-use \Twig\Compiler;
-final class EndsWithBinary extends AbstractBinary {
+
+use Twig\Compiler;
+
+final class EndsWithBinary extends AbstractBinary
+{
     public function compile(Compiler $compiler): void
     {
         $compiler

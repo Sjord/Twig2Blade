@@ -1,7 +1,11 @@
 <?php
+
 namespace Sjord\Twig2Blade\Node\Expression;
-use \Twig\Compiler;
-class FilterExpression extends \Sjord\Twig2Blade\Node\Expression\AbstractExpression {
+
+use Twig\Compiler;
+
+class FilterExpression extends \Sjord\Twig2Blade\Node\Expression\AbstractExpression
+{
     private static $filterMap = [
         'capitalize' => 'ucfirst',
         'keys' => 'array_keys',
@@ -53,7 +57,8 @@ class FilterExpression extends \Sjord\Twig2Blade\Node\Expression\AbstractExpress
         $compiler->raw(')');
     }
 
-    public function isRaw() {
+    public function isRaw()
+    {
         return $this->getNode('filter')->getAttribute('value') == 'raw';
     }
 }

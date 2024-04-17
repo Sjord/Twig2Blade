@@ -1,8 +1,12 @@
 <?php
+
 namespace Sjord\Twig2Blade\Node\Expression\Binary;
-use \Sjord\Twig2Blade\Node\Expression\AbstractExpression;
+
+use Sjord\Twig2Blade\Node\Expression\AbstractExpression;
 use Twig\Compiler;
-abstract class AbstractBinary extends AbstractExpression { 
+
+abstract class AbstractBinary extends AbstractExpression
+{
     protected $operator = null;
 
     public function compile(Compiler $compiler): void
