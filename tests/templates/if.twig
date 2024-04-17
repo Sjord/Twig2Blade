@@ -3,3 +3,11 @@ foo
 {% else %}
 bar
 {% endif %}
+
+{% if number > 10 %}
+   Available
+{% elseif number > 0 %}
+   Only {{ number }} left!
+{% else %}
+   Sold-out!
+{% endif %}
