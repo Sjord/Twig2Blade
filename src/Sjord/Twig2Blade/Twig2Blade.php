@@ -3,6 +3,7 @@
 namespace Sjord\Twig2Blade;
 
 use Twig\TwigFunction;
+use Twig\TwigFilter;
 
 class Twig2Blade
 {
@@ -27,6 +28,7 @@ class Twig2Blade
         ]);
         $twig->setCompiler(new Compiler($twig));
         $twig->registerUndefinedFunctionCallback([$this, 'undefinedFunctionCallback']);
+        $twig->registerUndefinedFilterCallback([$this, 'undefinedFilterCallback']);
         $node = $twig->parse($twig->tokenize($source));
         $traverser = new \Twig\NodeTraverser($twig, [
             new ConvertNodeVisitor($node),
@@ -39,5 +41,10 @@ class Twig2Blade
     public function undefinedFunctionCallback($name)
     {
         return new TwigFunction($name, $name);
+    }
+
+    public function undefinedFilterCallback($name)
+    {
+        return new TwigFilter($name, $name);
     }
 }
