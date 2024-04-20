@@ -1,0 +1,46 @@
+Whitespace
+
+--- 0 ---
+{% if true %}{% endif %}
+{% if true %} {% endif %}
+{% if true %}x{% endif %}
+{% if true %}={% endif %}
+
+--- 1 ---
+{% if true %}hello world{% endif %}
+{% if true %}hello world={% endif %}
+{% if true %} hello world{% endif %}
+{% if true %}hello world {% endif %}
+{% if true %} hello world {% endif %}
+
+--- 2 ---
+{% if true %}hello world
+{% endif %}
+{% if true %}
+hello world{% endif %}
+{% if true %}
+hello world
+{% endif %}
+{% if true %}
+
+hello world
+{% endif %}
+{% if true %}
+hello world
+
+{% endif %}
+{% if true %}
+
+hello world
+
+{% endif %}
+
+--- 3 ---
+{% verbatim %}{{ foo }}{% endverbatim %}
+{% verbatim %} {{ foo }}{% endverbatim %}
+{% verbatim %}{{ foo }} {% endverbatim %}
+{% verbatim %} {{ foo }} {% endverbatim %}
+{% verbatim %}
+{{ foo }}{% endverbatim %}
+{% verbatim %}{{ foo }}
+{% endverbatim %}

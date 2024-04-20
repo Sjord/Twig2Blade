@@ -139,12 +139,21 @@ class TextNode extends \Sjord\Twig2Blade\Node\Node
     public function compile(Compiler $compiler): void
     {
         $text = $this->getAttribute('data');
-        if ($this->needsVerbatim($text)) {
-            $compiler->ensureWhiteSpace()->raw("@verbatim");
-            $compiler->ensureWhiteSpace()->raw(ltrim($this->getAttribute('data'), "\n"));
-            $compiler->ensureWhiteSpace()->raw("@endverbatim");
+        if (preg_match('~\w\z~', $text)) {
+            // strings ends with word-character
+            $compiler
+                ->raw('{{ ')
+                ->repr($text)
+                ->raw(' }}');
         } else {
-            $compiler->raw($this->getAttribute('data'));
+            if ($this->needsVerbatim($text)) {
+                $compiler
+                    ->raw("@verbatim")
+                    ->raw($text)
+                    ->raw("@endverbatim");
+            } else {
+                $compiler->raw($text);
+            }
         }
     }
 
