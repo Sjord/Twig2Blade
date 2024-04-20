@@ -147,7 +147,9 @@ class TextNode extends \Sjord\Twig2Blade\Node\Node
                 ->raw(' }}');
         } else {
             if ($this->needsVerbatim($text)) {
+                [$whiteSpace, $text] = $this->stealWhiteSpace($text);
                 $compiler
+                    ->raw($whiteSpace)
                     ->raw("@verbatim")
                     ->raw($text)
                     ->raw("@endverbatim");
@@ -155,6 +157,13 @@ class TextNode extends \Sjord\Twig2Blade\Node\Node
                 $compiler->raw($text);
             }
         }
+    }
+
+    private function stealWhiteSpace($text) {
+        if (preg_match('~\A\s~', $text)) {
+            return [$text[0], substr($text, 1)];
+        }
+        return ['', $text];
     }
 
     private function needsVerbatim($text)
