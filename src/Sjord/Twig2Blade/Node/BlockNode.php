@@ -53,6 +53,7 @@ class BlockNode extends \Sjord\Twig2Blade\Node\Node
 
     private function bodyHasNewlines($body)
     {
-        return !empty($body->nodes) || str_contains($body->getAttribute('data'), "\n");
+        return !empty($body->nodes)
+            || ($body->hasAttribute('data') && str_contains($body->getAttribute('data'), "\n"));
     }
 }
