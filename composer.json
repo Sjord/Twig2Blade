@@ -3,8 +3,8 @@
         "twig/twig": "^3.8"
     },
     "require-dev": {
-        "illuminate/view": "^8.83",
-        "phpunit/phpunit": "^9.6"
+        "illuminate/view": "^11",
+        "phpunit/phpunit": "^11"
     },
     "autoload": {
         "psr-4": {
