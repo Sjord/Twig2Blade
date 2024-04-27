@@ -29,9 +29,9 @@ class BlockNode extends \Sjord\Twig2Blade\Node\Node
                     ->raw("@endsection\n");
             } else {
                 $compiler
-                    ->raw("@section('$name', '")
-                    ->subcompile($body) // TODO escape single quotes
-                    ->raw("')\n");
+                    ->raw("@section('$name', ")
+                    ->repr($body->getAttribute('data'))
+                    ->raw(")\n");
             }
         } else {
             if ($this->bodyIsEmpty($body)) {
